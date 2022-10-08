@@ -76,6 +76,12 @@ The CLI will also output ignored files to stderr so the easiest way to get a cle
 expenses > report.CSV
 ```
 
+If you want to find out more about the options supported by this CLI you can run:
+
+```bash
+expenses --help
+```
+
 
 ## Currency conversion
 
