@@ -2,6 +2,18 @@
 
 A CLI tool that takes a folder with receipts and invoices and outputs a catalog in CSV also taking care of currency conversion where needed.
 
+It uses [Open Exchange rates](https://openexchangerates.org) for currency conversion and it caches all the exchange rates locally in your file system. You'll need an API KEY from Open Exchange rates. If your base currency is only USD, you can use the free tier. If you need to convert from other currencies, you'll need a paid plan.
+
+
+## API Key Authorization
+
+- Get your API Key from [Open Exchange rates](https://openexchangerates.org)
+- Export it in your environment as `OPEN_EXCHANGE_RATES_API_KEY` with the following command: 
+
+```bash
+export OPEN_EXCHANGE_RATES_API_KEY=<your_api_key>
+```
+
 
 ## Rationale
 
@@ -65,14 +77,16 @@ npm i -g expenses
 
 ## Usage
 
-  1. Put all your expenses file in one folder
-  2. Rename all your expense files to follow the expected convention (`{year}-{month}-{day}-{provider}-{description}-{amount}-{currency}.pdf`)
-  3. Run `expenses` in the folder
-  4. Get the CSV output and do whatever you want with it.
+  1. Export your Open Exchange rates API key in your environment as `OPEN_EXCHANGE_RATES_API_KEY`
+  2. Put all your expenses file in one folder
+  3. Rename all your expense files to follow the expected convention (`{year}-{month}-{day}-{provider}-{description}-{amount}-{currency}.pdf`)
+  4. Run `expenses` in the folder
+  5. Get the CSV output and do whatever you want with it.
 
 The CLI will also output ignored files to stderr so the easiest way to get a clean CSV file is to run:
 
 ```bash
+export OPEN_EXCHANGE_RATES_API_KEY=<your_api_key>
 expenses > report.CSV
 ```
 
@@ -85,7 +99,7 @@ expenses --help
 
 ## Currency conversion
 
-The currency conversion part leverages the fantastic work done by [fawazahmed0/currency-api](https://github.com/fawazahmed0/currency-api). This project allows us to have historic exchange rates (**since 2020-11-22**) without having to pay for a private API or having to rely on annoying API keys to access public rate-limited free APIs.
+The currency conversion part leverages the [Open Exchange rates](https://openexchangerates.org) API.
 
 Note that the current implementation caches all the retrieved exchange rates locally in your file system, so you will never have to fetch the same exchange rate twice.
 

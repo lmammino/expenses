@@ -1,6 +1,6 @@
 {
   "name": "expenses",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "engines": {
     "node": ">=14.0.0"
   },
@@ -45,6 +45,6 @@
     "csv-stringify": "^6.2.0",
     "env-paths": "^3.0.0",
     "mkdirp": "^1.0.4",
-    "undici": "^5.11.0"
+    "undici": "^6.19.2"
   }
 }
