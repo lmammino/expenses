@@ -27,4 +27,4 @@ jobs:
           CI: true
 
       - name: Publish on NPM
-        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc && pnpm publish --no-git-checks
+        run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc && npm publish
