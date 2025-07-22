@@ -8,6 +8,8 @@ const paths = envPaths('expenses-cli')
 // biome-ignore lint/complexity/useLiteralKeys: Conflicts with ts(4111)
 const FREECURRENCY_API_KEY = process.env['FREECURRENCY_API_KEY']
 
+const CACHE_VERSION = 'v3'
+
 async function fileExists(filePath: string): Promise<boolean> {
   try {
     const stats = await stat(filePath)
@@ -27,7 +29,7 @@ export async function getRate(
     process.exit(1)
   }
 
-  const cacheKey = `${date}-${from}-${to}-v3.json`
+  const cacheKey = `${date}-${from}-${to}-${CACHE_VERSION}.json`
   const cacheFilePath = join(paths.cache, cacheKey)
 
   if (await fileExists(cacheFilePath)) {
@@ -76,7 +78,7 @@ async function fetchWithRateLimitControl(
   url: string,
   options: RequestInit = {},
 ): Promise<Response> {
-  let response: Response | null = null
+  let response: Response
   let attempts = 0
   const maxAttempts = 5
   const backoffFactor = 2
@@ -85,21 +87,15 @@ async function fetchWithRateLimitControl(
   while (attempts < maxAttempts) {
     try {
       response = await fetch(url, options)
-      if (response.ok) {
+      if (response.status !== 429) {
         return response
       }
-      if (response.status === 429) {
-        // Too many requests, apply exponential backoff
-        console.warn(
-          `Rate limit exceeded. Retrying in ${delay}ms... (Attempt ${attempts + 1})`,
-        )
-        await setTimeout(delay)
-        delay *= backoffFactor
-      } else {
-        throw new Error(
-          `Request failed with status ${response.status}: ${response.statusText}`,
-        )
-      }
+      // Too many requests, apply exponential backoff
+      console.warn(
+        `Rate limit exceeded. Retrying in ${delay}ms... (Attempt ${attempts + 1})`,
+      )
+      await setTimeout(delay)
+      delay *= backoffFactor
     } catch (error) {
       console.error(`Error fetching ${url}:`, error)
       throw error
