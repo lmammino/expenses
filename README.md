@@ -24,8 +24,9 @@ export FREECURRENCY_API_KEY=<your_api_key>
 Sometimes (like yearly returns time 😖) you just find yourself with a big lump
 of expense files in PDF and you need to compile a report.
 
-Even worse if your receipts are in multiple currencies and you need to normalize
-all of them to a target currency… yeah, expenses fun, tell me about that!
+Even worse if your receipts are in multiple currencies, and you need to
+normalize all of them to a target currency… yeah, expenses fun, tell me about
+that!
 
 This tool can help you automate some of this work.
 
@@ -87,11 +88,13 @@ npm i -g expenses
 
 ## 🚀 Usage
 
-    1.	Export your Free Currency API key in your environment as FREECURRENCY_API_KEY
-    2.	Put all your expense files in one folder
-    3.	Rename all your expense files to follow the expected convention (`{year}-{month}-{day}-{provider}-{description}-{amount}-{currency}.pdf`)
-    4.	Run expenses in the folder
-    5.	Get the CSV output and do whatever you want with it
+1. Export your Free Currency API key in your environment as
+   `FREECURRENCY_API_KEY`
+2. Put all your expense files in one folder
+3. Rename all your expense files to follow the expected convention
+   (`{year}-{month}-{day}-{provider}-{description}-{amount}-{currency}.pdf`)
+4. Run expenses in the folder
+5. Get the CSV output and do whatever you want with it
 
 The CLI will also output ignored files to stderr, so the easiest way to get a
 clean CSV file is to run:
