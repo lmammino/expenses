@@ -1,6 +1,6 @@
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises'
-import { setTimeout } from 'node:timers/promises'
 import { join } from 'node:path'
+import { setTimeout } from 'node:timers/promises'
 import envPaths from 'env-paths'
 import type { ExchangeRateResponse } from './types.js'
 
