@@ -1,2 +1,7 @@
 export { getRate } from './rates.js'
-export type { ExpenseMatch, ExpenseRecord, ExchangeRateResponse, CommandOptions } from './types.js'
+export type {
+  CommandOptions,
+  ExchangeRateResponse,
+  ExpenseMatch,
+  ExpenseRecord,
+} from './types.js'

@@ -1,55 +1,62 @@
 {
-	"name": "expenses",
-	"version": "2.0.0",
-	"engines": {
-		"node": ">=24.0.0"
-	},
-	"engineStrict": true,
-	"description": "A CLI tool that takes a folder with receipts and invoices and outputs a catalog in CSV also taking care of currency conversion where needed",
-	"bin": {
-		"expenses": "dist/expenses.js"
-	},
-	"main": "dist/index.js",
-	"types": "dist/index.d.ts",
-	"files": ["dist/**/*", "README.md", "LICENSE"],
-	"scripts": {
-		"build": "tsc",
-		"dev": "tsc --watch",
-		"clean": "rm -rf dist",
-		"prepublishOnly": "npm run clean && npm run build",
-		"test:type": "tsc --noEmit",
-		"test": "npm run test:type"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/lmammino/expenses.git"
-	},
-	"keywords": [
-		"expenses",
-		"accounting",
-		"automation",
-		"cli",
-		"files",
-		"report",
-		"csv",
-		"typescript"
-	],
-	"author": "Luciano Mammino",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/lmammino/expenses/issues"
-	},
-	"homepage": "https://github.com/lmammino/expenses#readme",
-	"type": "module",
-	"devDependencies": {
-		"@types/node": "^20.0.0",
-		"typescript": "^5.8.3"
-	},
-	"dependencies": {
-		"commander": "^11.0.0",
-		"csv-stringify": "^6.4.0",
-		"env-paths": "^3.0.0",
-		"mkdirp": "^3.0.0",
-		"undici": "^6.19.2"
-	}
+  "name": "expenses",
+  "version": "2.0.0",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "engineStrict": true,
+  "description": "A CLI tool that takes a folder with receipts and invoices and outputs a catalog in CSV also taking care of currency conversion where needed",
+  "bin": {
+    "expenses": "dist/expenses.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "test:lint": "biome check",
+    "test:lint-fix": "biome check --write",
+    "test:type": "tsc --noEmit",
+    "test": "npm run test:lint && npm run test:type"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmammino/expenses.git"
+  },
+  "keywords": [
+    "expenses",
+    "accounting",
+    "automation",
+    "cli",
+    "files",
+    "report",
+    "csv",
+    "typescript"
+  ],
+  "author": "Luciano Mammino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lmammino/expenses/issues"
+  },
+  "homepage": "https://github.com/lmammino/expenses#readme",
+  "type": "module",
+  "devDependencies": {
+    "@biomejs/biome": "2.1.2",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "csv-stringify": "^6.4.0",
+    "env-paths": "^3.0.0",
+    "mkdirp": "^3.0.0",
+    "undici": "^6.19.2"
+  }
 }
