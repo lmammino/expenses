@@ -1,13 +1,3 @@
-export interface ExpenseMatch {
-  year: string
-  month: string
-  day: string
-  provider: string
-  description: string
-  amount: string
-  currency: string
-}
-
 export interface ExpenseRecord {
   date: string
   provider: string
@@ -18,8 +8,11 @@ export interface ExpenseRecord {
   total: string
 }
 
-export interface ExchangeRateResponse {
-  rates: Record<string, number>
+export interface ExchangeRateResponse<
+  DATE extends string = string,
+  CURRENCY extends string = string,
+> {
+  data: Record<DATE, Record<CURRENCY, number>>
 }
 
 export interface CommandOptions {
