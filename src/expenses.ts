@@ -4,7 +4,7 @@ import { readdir, readFile } from 'node:fs/promises'
 import { program } from 'commander'
 import { stringify } from 'csv-stringify/sync'
 import { getRate } from './rates.js'
-import type { CommandOptions, ExpenseMatch, ExpenseRecord } from './types.js'
+import type { CommandOptions, ExpenseRecord } from './types.js'
 
 const packageJson = JSON.parse(
   await readFile(new URL('../package.json', import.meta.url), 'utf8'),
@@ -53,7 +53,16 @@ program
       }
 
       const [, year, month, day, provider, description, amount, currency] =
-        matches as [string, ...ExpenseMatch[keyof ExpenseMatch][]]
+        matches as [
+          string,
+          string,
+          string,
+          string,
+          string,
+          string,
+          string,
+          string,
+        ]
       const date = `${year}-${month}-${day}`
       const cleanProvider = provider.replace(/_/g, ' ')
       const cleanDescription = description.replace(/_/g, ' ')
